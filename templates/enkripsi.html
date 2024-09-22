@@ -1,0 +1,29 @@
+{% extends "main_layout.html"%}
+{% block content %}
+<form action="/enkripsi" method="post">
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Masukan Plaintext</label>
+      <textarea class="form-control" id="content-target" name="plaintext" rows="3" placeholder="MASUKAN PLAINTEXT...">{{ plain }}</textarea>
+      <label for="file">Atau upload file : </label>
+      <input type="file" id="input-file">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Masukan Kunci</label>
+      <textarea class="form-control" id="kunci" name="kunci" rows="2" placeholder="MASUKAN KUNCI...">{{ key }}</textarea>
+    </div>
+    <div class="button" style="margin-left: 27rem;">
+      <button type="submit" class="btn btn-success">Enkripsi</button>
+      <button type="button" class="btn btn-danger" Onclick="location.href = '/enkripsi';">Reset</button>
+      {% if save %}
+      <a href="/download/{{save}}" class="hrefs"><button class="btn btn-light" type="button">Save</button></a>
+      {% else %}
+      <button class="btn btn-light">Save</button>
+      {% endif %}
+    </div>
+  </form>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Ciphertext</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{result}}</textarea>
+    </div>
+<script src="../static/main.js"></script>
+{% endblock %}

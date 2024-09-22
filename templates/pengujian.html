@@ -1,0 +1,69 @@
+{% extends "main_layout.html"%}
+{% block content %}
+<link rel="stylesheet" href="../static/pengujian.css">
+<form action="" method="post" id="forms ">
+  <div>
+    <div>
+      <label for="exampleFormControlTextarea1">Masukan PlainText</label>
+      <textarea class="form-control" id="content-target" name="plain" rows="1" placeholder="MASUKAN PlainText...">{{ plain }}</textarea>
+    </div>
+    <div class="space">
+      <label for="file">Atau upload file : </label>
+      <input type="file" id="input-file">
+    </div>
+    <div>
+      <label for="exampleFormControlTextarea1">Masukan CipherText</label>
+      <textarea class="form-control" id="content-targets" name="cipher" rows="1" placeholder="MASUKAN CipherText...">{{ cipher }}</textarea>
+    </div>
+    <div class="space">
+      <label for="file">Atau upload file : </label>
+      <input type="file" id="input-files">
+    </div>
+  </div>
+  <div class="space">
+    <input type="submit" class="btn btn-danger" value="Hitung">
+  </div>
+</form>
+<center style="background-color:#c0c0c0;" >
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="huruf">Huruf</th>
+          <th>Jumlah PlainText</th>
+          <th>Jumlah CipherText</th>
+          <th>Presentase PlainText
+          </th>
+          <th>Presentase CipherText</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in analisa%}
+            <tr>
+              <td>{{ i['huruf'] }}</td>
+              <td>{{ i['fp'] }}</td>
+              <td>{{ i['fc'] }}</td>
+              <td>{{ i['pp'] }}</td>
+              <td>{{ i['pc'] }}</td>
+            </tr>
+        {% endfor %}
+        </tr>                                
+      </tbody>
+      <tfoot>
+        <tr>
+          <td><b>&nbsp;</b></td>
+          <td><b>&nbsp;</b></td>
+          <td><b>Rata Rata</b></td>
+          <td><b>{{ ratap }}</b></td>
+          <td><b>{{ ratac }}</b></td>
+        </tr>
+      </tfoot>
+  </table>
+{% if filepath %}
+<div style="margin: bottom 10px;">
+  <a href="/download/{{filepath}}" class="hrefs">Download Grafiknya Disini</a>
+</div>
+{% endif %}
+</center>
+<script src="../static/main.js"></script>
+&nbsp;<br>&nbsp;
+{% endblock %}
